@@ -47,7 +47,7 @@ func (t *Tree) insert(key int64) {
 			curr = curr.right
 		}
 	}
-	newNode.parent = temp
+
 	if temp == nil {
 		t.root = newNode
 	} else if newNode.key < temp.key {
@@ -74,6 +74,7 @@ func (t *Tree) leftRotate(x *Node) {
 	} else {
 		x.parent.right = y
 	}
+	y.parent = x.parent
 	x.parent = y
 	y.left = x
 }
@@ -92,6 +93,7 @@ func (t *Tree) rightRotate(x *Node) {
 	} else {
 		x.parent.right = y
 	}
+	y.parent = x.parent
 	x.parent = y
 	y.right = x
 }
@@ -285,12 +287,13 @@ func (t *Tree) inOrder(node *Node) {
 func main () {
 	var tree *Tree = &Tree{}
 	tree.insert(15)
-	tree.insert(8)
-	tree.insert(16)
-	tree.insert(24)
 	tree.insert(3)
+	tree.insert(17)
+	tree.insert(18)
 	tree.insert(2)
-	tree.delete(2)
-	tree.delete(8)
+	tree.insert(8)
+	tree.insert(10)
+	tree.insert(5)
+	tree.insert(4)
 	tree.inOrder(tree.root)
 }
